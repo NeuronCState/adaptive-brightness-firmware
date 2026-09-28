@@ -1,0 +1,30 @@
+[package]
+name = "adaptive-brightness-firmware"
+version = "0.1.0"
+edition = "2024"
+publish = false
+
+[dependencies]
+cortex-m-rt = "0.7.5"
+critical-section = "1.2"
+embassy-executor = "0.10.0"
+embassy-rp = { version = "0.10.0", features = [
+    "critical-section-impl",
+    "time-driver",
+    "rp2040",
+    "executor-thread",
+    "rt",
+] }
+embassy-time = "0.5.1"
+embassy-usb = "0.6.0"
+embedded-hal-async = "1.0"
+panic-halt = "1.0"
+portable-atomic = { version = "1.15", features = ["critical-section"] }
+static_cell = "2.1"
+
+[profile.release]
+debug = 2
+opt-level = "z"
+lto = true
+codegen-units = 1
+panic = "abort"
